@@ -3,15 +3,6 @@ import {
   TOGGLE_TODO
 } from '../actions/actionTypes'
 
-// interface Action {
-//   type: string
-//   payload: {
-//     id: string
-//     name: string
-//     completed: boolean
-//   }
-// }
-
 interface Action {
   type: string
   payload: string
@@ -35,7 +26,11 @@ const todos = (state = initialState, action: Action) => {
     case ADD_TODO:
       return [
         ...state,
-        action.payload
+        {
+          id: `${action.payload}_id`,
+          name: action.payload,
+          completed: false
+        }
       ]
     case TOGGLE_TODO:
       return state.map(todo => 
